@@ -11,19 +11,19 @@ const mapStatus = document.querySelector("#map-status");
 const manualButton = document.querySelector("#manual-button");
 
 const defaultStyle = {
-  color: "#2f796f",
-  weight: 2.2,
-  opacity: 0.92,
-  fillColor: "#64a396",
-  fillOpacity: 0.16,
+  color: "#a9371d",
+  weight: 2.8,
+  opacity: 1,
+  fillColor: "#f36a2f",
+  fillOpacity: 0.3,
 };
 
 const matchStyle = {
-  color: "#6651be",
-  weight: 4,
+  color: "#861f18",
+  weight: 4.5,
   opacity: 1,
-  fillColor: "#7665c8",
-  fillOpacity: 0.24,
+  fillColor: "#e33d2e",
+  fillOpacity: 0.4,
 };
 
 const map = L.map("map", {
