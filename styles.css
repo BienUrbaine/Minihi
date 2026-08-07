@@ -96,26 +96,6 @@ input {
   font-size: 0.96rem;
 }
 
-.agent-pill {
-  padding: 12px 22px;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  backdrop-filter: blur(8px);
-}
-
-.agent-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #b9e0ca;
-  box-shadow: 0 0 0 4px rgba(185, 224, 202, 0.14);
-}
-
 .workspace {
   width: min(1460px, calc(100% - 48px));
   height: clamp(660px, calc(100vh - 176px), 820px);
@@ -661,14 +641,8 @@ footer {
     height: 36px;
   }
 
-  .brand small,
-  .agent-dot {
+  .brand small {
     display: none;
-  }
-
-  .agent-pill {
-    padding: 9px 13px;
-    font-size: 0.78rem;
   }
 
   .workspace {
@@ -704,10 +678,6 @@ footer {
 
   .brand strong {
     font-size: 1.35rem;
-  }
-
-  .agent-pill {
-    display: none;
   }
 
   .workspace {
