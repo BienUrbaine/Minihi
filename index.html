@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Recherchez une adresse et identifiez les dispositifs d’aide applicables."
+    />
+    <title>Kokolanek — Carte des aides</title>
+    <link rel="stylesheet" href="./leaflet.css" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="data:image/png;base64,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" alt="" />
+        </span>
+        <span>
+          <strong>Kokolanek</strong>
+          <small>Trouver les aides applicables à une adresse</small>
+        </span>
+      </div>
+      <div class="agent-pill">
+        <span class="agent-dot" aria-hidden="true"></span>
+        Mode agent
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="search-panel" aria-labelledby="search-title">
+        <div class="panel-intro">
+          <p class="eyebrow">Recherche d’adresse</p>
+          <h1 id="search-title">Votre logement est-il éligible&nbsp;?</h1>
+          <p class="intro-copy">
+            Saisissez une adresse officielle pour identifier le ou les
+            périmètres applicables.
+          </p>
+        </div>
+
+        <div class="search-shell">
+          <label class="sr-only" for="address-input">Adresse à rechercher</label>
+          <span class="search-icon" aria-hidden="true"></span>
+          <input
+            id="address-input"
+            type="search"
+            autocomplete="street-address"
+            placeholder="Numéro, voie et commune"
+            aria-describedby="search-help"
+            aria-controls="suggestions"
+            aria-autocomplete="list"
+          />
+          <span id="search-spinner" class="spinner" aria-hidden="true"></span>
+          <div
+            id="suggestions"
+            class="suggestions"
+            role="listbox"
+            aria-label="Adresses proposées"
+          ></div>
+        </div>
+        <p id="search-help" class="search-help">
+          Recherche dans la Base Adresse Nationale — Finistère
+        </p>
+        <button id="manual-button" class="manual-button" type="button">
+          <span aria-hidden="true">⌖</span>
+          Adresse introuvable&nbsp;? Placer un point sur la carte
+        </button>
+
+        <div id="result" class="result result-empty" aria-live="polite">
+          <div class="empty-illustration" aria-hidden="true">
+            <span></span>
+          </div>
+          <h2>Prêt pour une recherche</h2>
+          <p>Le dispositif correspondant s’affichera ici.</p>
+        </div>
+
+        <p class="privacy-note">
+          La recherche d’adresse est transmise au service public de géocodage
+          de l’IGN. Aucune adresse n’est enregistrée par Kokolanek.
+        </p>
+      </section>
+
+      <section class="map-panel" aria-label="Carte des périmètres d’aide">
+        <div id="map"></div>
+        <div id="map-status" class="map-status">Chargement des périmètres…</div>
+        <div class="map-legend">
+          <span><i class="legend-zone"></i>Périmètre d’aide</span>
+          <span><i class="legend-match"></i>Périmètre trouvé</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Données&nbsp;: DB_PAL</span>
+      <span>Adresses&nbsp;: IGN / Géoplateforme</span>
+      <span>Prototype Kokolanek</span>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
