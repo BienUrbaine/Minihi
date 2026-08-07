@@ -2,6 +2,10 @@
 
 Carte web de consultation des périmètres d’aide au logement.
 
+## Carte publique
+
+[Ouvrir la carte Kokolanek](https://thomaslmk.github.io/Kokolanek/)
+
 ## Fonctionnalités
 
 - recherche d’adresse via le service public IGN / Géoplateforme ;
