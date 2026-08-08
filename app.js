@@ -10,20 +10,10 @@ const resultBox = document.querySelector("#result");
 const mapStatus = document.querySelector("#map-status");
 const manualButton = document.querySelector("#manual-button");
 
-const defaultStyle = {
-  color: "#a9371d",
-  weight: 2.8,
-  opacity: 1,
+const perimeterStyle = {
+  stroke: false,
   fillColor: "#f36a2f",
-  fillOpacity: 0.3,
-};
-
-const matchStyle = {
-  color: "#861f18",
-  weight: 4.5,
-  opacity: 1,
-  fillColor: "#e33d2e",
-  fillOpacity: 0.4,
+  fillOpacity: 0.34,
 };
 
 const map = L.map("map", {
@@ -107,7 +97,7 @@ loadPerimeters()
   .then((data) => {
     features = data.features || [];
     perimeterLayer = L.geoJSON(data, {
-      style: defaultStyle,
+      style: perimeterStyle,
       onEachFeature(feature, layer) {
         layer.bindPopup(popupContent(feature));
         layer.bindTooltip(deviceName(feature), {
@@ -197,15 +187,6 @@ function featureContainsPoint(feature, point) {
   return false;
 }
 
-function highlightMatches(matches) {
-  const matchIds = new Set(matches.map((feature) => feature.properties?.fid));
-  perimeterLayer?.eachLayer((layer) => {
-    const isMatch = matchIds.has(layer.feature?.properties?.fid);
-    layer.setStyle(isMatch ? matchStyle : defaultStyle);
-    if (isMatch) layer.bringToFront();
-  });
-}
-
 function showFound(label, matches) {
   const matchMarkup = matches
     .map(
@@ -277,7 +258,6 @@ function locatePoint(longitude, latitude, label) {
   }
   addressMarker.bindTooltip(label, { direction: "top", offset: [0, -30] });
   map.flyTo([latitude, longitude], 16, { duration: 0.75 });
-  highlightMatches(matches);
 
   if (matches.length) showFound(label, matches);
   else showOutside(label);
