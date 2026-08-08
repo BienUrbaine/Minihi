@@ -118,8 +118,12 @@ input {
 }
 
 .search-panel,
-.map-panel {
+.map-column {
   height: 100%;
+}
+
+.search-panel,
+.map-panel {
   border: 1px solid rgba(76, 29, 95, 0.09);
   border-radius: 28px;
   background: var(--white);
@@ -130,6 +134,13 @@ input {
   padding: clamp(28px, 4vw, 44px);
   display: flex;
   flex-direction: column;
+}
+
+.map-column {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .panel-intro {
@@ -503,6 +514,8 @@ h1 {
 
 .map-panel {
   position: relative;
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
 }
 
@@ -517,7 +530,7 @@ h1 {
 }
 
 .leaflet-tile-pane {
-  opacity: 0.78;
+  opacity: 0.6;
   filter: saturate(0.58) brightness(1.07) contrast(0.9);
 }
 
@@ -567,7 +580,7 @@ h1 {
 }
 
 .popup-title {
-  margin: 5px 0 8px;
+  margin: 0 0 8px;
   color: var(--ink);
   font-weight: 800;
 }
@@ -647,6 +660,22 @@ h1 {
   cursor: crosshair;
 }
 
+.map-sources {
+  margin: 0 4px;
+  color: #8b7d90;
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.map-sources strong {
+  color: #79687e;
+}
+
+.map-sources a {
+  color: #714d79;
+  text-underline-offset: 2px;
+}
+
 footer {
   width: min(1460px, calc(100% - 48px));
   margin: 0 auto 26px;
@@ -690,7 +719,7 @@ footer {
   }
 
   .search-panel,
-  .map-panel {
+  .map-column {
     height: auto;
   }
 
