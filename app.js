@@ -76,36 +76,54 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
-function deviceName(feature) {
-  return feature.properties?.Dispositif || "Dispositif non renseigné";
+function propertyValue(feature, name, fallback = "Non renseigné") {
+  const value = feature.properties?.[name];
+  if (value === null || value === undefined || String(value).trim() === "") {
+    return fallback;
+  }
+  return String(value).trim();
 }
 
-function communeName(feature) {
-  return feature.properties?.Commune || "Commune non renseignée";
+function deviceName(feature) {
+  return propertyValue(feature, "Label", "Dispositif non renseigné");
+}
+
+function deviceType(feature) {
+  return propertyValue(feature, "Type");
+}
+
+function projectOwner(feature) {
+  return propertyValue(feature, "Maitre_ouvrage");
+}
+
+function formatDate(value) {
+  if (!value) return "Non renseignée";
+  const parts = String(value).split("-");
+  if (parts.length === 3) {
+    const [year, month, day] = parts;
+    return `${day}/${month}/${year}`;
+  }
+  return String(value);
+}
+
+function dateRange(feature) {
+  const start = formatDate(feature.properties?.Date_debut);
+  const end = formatDate(feature.properties?.Date_fin);
+  return `Du ${start} au ${end}`;
 }
 
 function popupContent(feature) {
   return `
     <div class="popup-label">Dispositif d’aide</div>
     <div class="popup-title">${escapeHtml(deviceName(feature))}</div>
-    <div class="popup-commune">${escapeHtml(communeName(feature))}</div>
+    <div class="popup-commune"><strong>Type :</strong> ${escapeHtml(deviceType(feature))}</div>
+    <div class="popup-commune">${escapeHtml(dateRange(feature))}</div>
+    <div class="popup-commune"><strong>Maître d’ouvrage :</strong> ${escapeHtml(projectOwner(feature))}</div>
   `;
 }
 
 async function loadPerimeters() {
-  if ("DecompressionStream" in window) {
-    const compressed = await fetch("./data/perimetres.geojson.gz");
-    if (compressed.ok) {
-      if (compressed.headers.get("content-encoding") === "gzip") {
-        return compressed.json();
-      }
-      const decompressed = compressed.body.pipeThrough(
-        new DecompressionStream("gzip"),
-      );
-      return new Response(decompressed).json();
-    }
-  }
-  const response = await fetch("./data/perimetres.geojson");
+  const response = await fetch("./data/perimetres.geojson", { cache: "no-store" });
   if (!response.ok) throw new Error("Impossible de charger les périmètres.");
   return response.json();
 }
@@ -148,7 +166,9 @@ loadPerimeters()
     }
     window.setTimeout(() => {
       map.invalidateSize({ pan: false });
-      map.fitBounds(perimeterLayer.getBounds(), { padding: [28, 28] });
+      if (perimeterLayer.getBounds().isValid()) {
+        map.fitBounds(perimeterLayer.getBounds(), { padding: [28, 28] });
+      }
     }, 120);
     setMapStatus();
   })
@@ -220,10 +240,9 @@ function showFound(label, matches) {
         <article class="match">
           <p class="field-label">Dispositif</p>
           <p class="device-name">${escapeHtml(deviceName(feature))}</p>
-          <div class="commune-row">
-            <span>${escapeHtml(communeName(feature))}</span>
-            <span class="fid">fid ${escapeHtml(feature.properties?.fid ?? "—")}</span>
-          </div>
+          <div class="commune-row"><span><strong>Type :</strong> ${escapeHtml(deviceType(feature))}</span></div>
+          <div class="commune-row"><span><strong>Période :</strong> ${escapeHtml(dateRange(feature))}</span></div>
+          <div class="commune-row"><span><strong>Maître d’ouvrage :</strong> ${escapeHtml(projectOwner(feature))}</span></div>
         </article>
       `,
     )
