@@ -51,40 +51,47 @@ input {
 
 .topbar {
   min-height: 112px;
-  padding: 24px clamp(24px, 4vw, 64px);
+  padding: 24px 0;
   color: #fff;
   background: linear-gradient(108deg, #481759 0%, #762a83 100%);
-  display: flex;
+}
+
+.topbar-inner {
+  width: min(1460px, calc(100% - 48px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(350px, 460px) minmax(0, 1fr);
+  gap: 26px;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
 }
 
 .brand {
+  grid-column: 1;
+  justify-self: center;
   display: flex;
   align-items: center;
   gap: 18px;
 }
 
 .brand-mark {
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  background: #fbf5fc;
+  width: 68px;
+  height: 68px;
+  background: transparent;
   display: grid;
   place-items: center;
   flex: 0 0 auto;
 }
 
 .brand-mark img {
-  width: 42px;
-  height: 42px;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
 .brand strong {
   display: block;
-  font-size: clamp(1.55rem, 3vw, 2rem);
+  font-size: clamp(2rem, 3.4vw, 2.7rem);
   line-height: 1;
   letter-spacing: 0.01em;
 }
@@ -650,14 +657,19 @@ footer {
     padding-block: 17px;
   }
 
+  .topbar-inner {
+    width: min(100% - 28px, 760px);
+    grid-template-columns: 1fr;
+  }
+
   .brand-mark {
-    width: 50px;
-    height: 50px;
+    width: 58px;
+    height: 58px;
   }
 
   .brand-mark img {
-    width: 36px;
-    height: 36px;
+    width: 48px;
+    height: 48px;
   }
 
   .brand small {
@@ -688,15 +700,19 @@ footer {
 
 @media (max-width: 540px) {
   .topbar {
-    padding-inline: 16px;
+    padding-inline: 0;
+  }
+
+  .topbar-inner {
+    width: calc(100% - 18px);
   }
 
   .brand {
-    gap: 11px;
+    gap: 12px;
   }
 
   .brand strong {
-    font-size: 1.35rem;
+    font-size: 1.9rem;
   }
 
   .workspace {
