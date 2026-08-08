@@ -102,6 +102,7 @@ input {
   padding: clamp(28px, 4vw, 44px);
   display: flex;
   flex-direction: column;
+  gap: clamp(28px, 4vh, 42px);
 }
 
 .map-column {
@@ -135,7 +136,7 @@ h1 {
 
 .intro-copy {
   max-width: 40ch;
-  margin: 10px 0 24px;
+  margin: 12px 0 0;
   color: #747779;
   line-height: 1.55;
 }
@@ -269,12 +270,12 @@ h1 {
 }
 
 .result {
-  margin-top: 28px;
+  margin-top: 0;
   border-radius: 19px;
 }
 
 .result-empty {
-  min-height: 188px;
+  min-height: clamp(220px, 28vh, 280px);
   padding: 28px 20px;
   border: 1px dashed #cfd0cd;
   display: grid;
@@ -687,7 +688,12 @@ footer {
 
   .search-panel {
     padding: 25px 20px;
+    gap: 24px;
     border-radius: 21px;
+  }
+
+  .result-empty {
+    min-height: 190px;
   }
 
   .map-panel {
