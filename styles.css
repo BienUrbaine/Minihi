@@ -517,6 +517,7 @@ h1 {
 }
 
 .leaflet-tile-pane {
+  opacity: 0.78;
   filter: saturate(0.58) brightness(1.07) contrast(0.9);
 }
 
