@@ -602,13 +602,7 @@ h1 {
 }
 
 .legend-zone {
-  border: 2px solid #a9371d;
-  background: rgba(243, 106, 47, 0.3);
-}
-
-.legend-match {
-  border: 2px solid #861f18;
-  background: rgba(227, 61, 46, 0.4);
+  background: rgba(243, 106, 47, 0.34);
 }
 
 .manual-mode #map {
