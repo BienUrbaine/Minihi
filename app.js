@@ -1,7 +1,7 @@
 /* global L */
 
 const COMPLETION_ENDPOINT = "https://data.geopf.fr/geocodage/completion/";
-const TERRITORY = "29";
+const TERRITORY = "22,29,35,56";
 
 const addressInput = document.querySelector("#address-input");
 const suggestionsBox = document.querySelector("#suggestions");
