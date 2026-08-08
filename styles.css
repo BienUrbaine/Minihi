@@ -120,6 +120,10 @@ input {
   flex-direction: column;
 }
 
+.panel-intro {
+  width: 100%;
+}
+
 .eyebrow {
   margin: 0 0 10px;
   color: #806486;
@@ -131,14 +135,16 @@ input {
 
 h1 {
   margin: 0;
-  color: #3c2443;
-  font-size: clamp(1.65rem, 3vw, 2.25rem);
-  line-height: 1.12;
-  letter-spacing: -0.025em;
+  color: #4b3850;
+  font-size: clamp(1.35rem, 2vw, 1.58rem);
+  font-weight: 750;
+  line-height: 1.24;
+  letter-spacing: -0.015em;
 }
 
 .intro-copy {
-  margin: 12px 0 24px;
+  max-width: 40ch;
+  margin: 10px 0 24px;
   color: #76677a;
   line-height: 1.55;
 }
@@ -266,7 +272,7 @@ h1 {
 }
 
 .search-help {
-  margin: 8px 2px 0;
+  margin: 8px 0 0;
   color: #8d7e92;
   font-size: 0.77rem;
 }
