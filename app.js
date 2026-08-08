@@ -12,12 +12,12 @@ const manualButton = document.querySelector("#manual-button");
 
 const perimeterStyle = {
   stroke: false,
-  fillColor: "#f36a2f",
-  fillOpacity: 0.34,
+  fillColor: "#762a83",
+  fillOpacity: 0.48,
 };
 
 const perimeterHoverStyle = {
-  fillOpacity: 0.52,
+  fillOpacity: 0.65,
 };
 
 function setMapStatus(message = "") {
