@@ -109,15 +109,14 @@ function formatDate(value) {
 function dateRange(feature) {
   const start = formatDate(feature.properties?.Date_debut);
   const end = formatDate(feature.properties?.Date_fin);
-  return `Du ${start} au ${end}`;
+  return `du ${start} au ${end}`;
 }
 
 function popupContent(feature) {
   return `
-    <div class="popup-label">Dispositif d’aide</div>
     <div class="popup-title">${escapeHtml(deviceName(feature))}</div>
     <div class="popup-commune"><strong>Type :</strong> ${escapeHtml(deviceType(feature))}</div>
-    <div class="popup-commune">${escapeHtml(dateRange(feature))}</div>
+    <div class="popup-commune"><strong>Date :</strong> ${escapeHtml(dateRange(feature))}</div>
     <div class="popup-commune"><strong>Maître d’ouvrage :</strong> ${escapeHtml(projectOwner(feature))}</div>
   `;
 }
