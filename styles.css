@@ -74,8 +74,8 @@ input {
 }
 
 .brand-mark {
-  width: 68px;
-  height: 68px;
+  width: 82px;
+  height: 82px;
   background: transparent;
   display: grid;
   place-items: center;
@@ -83,10 +83,15 @@ input {
 }
 
 .brand-mark img {
-  width: 56px;
-  height: 56px;
+  width: 74px;
+  height: 74px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
+  filter:
+    brightness(0) invert(1)
+    drop-shadow(0.6px 0 0 #fff)
+    drop-shadow(-0.6px 0 0 #fff)
+    drop-shadow(0 0.6px 0 #fff)
+    drop-shadow(0 -0.6px 0 #fff);
 }
 
 .brand strong {
@@ -663,13 +668,13 @@ footer {
   }
 
   .brand-mark {
-    width: 58px;
-    height: 58px;
+    width: 70px;
+    height: 70px;
   }
 
   .brand-mark img {
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
   }
 
   .brand small {
@@ -709,6 +714,16 @@ footer {
 
   .brand {
     gap: 12px;
+  }
+
+  .brand-mark {
+    width: 62px;
+    height: 62px;
+  }
+
+  .brand-mark img {
+    width: 56px;
+    height: 56px;
   }
 
   .brand strong {
