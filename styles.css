@@ -1,16 +1,16 @@
 :root {
-  --ink: #33213a;
-  --ink-soft: #705e74;
-  --paper: #f5f1f6;
+  --ink: #303234;
+  --ink-soft: #6f7274;
+  --paper: #f1f1ef;
   --white: #ffffff;
-  --teal: #4c1d5f;
-  --teal-bright: #762a83;
-  --line: #e4d9e7;
-  --green: #4d945c;
-  --green-soft: #eef7e9;
-  --violet: #762a83;
-  --orange: #e96e43;
-  --shadow: 0 20px 60px rgba(76, 29, 95, 0.12);
+  --teal: #c95f19;
+  --teal-bright: #e87524;
+  --line: #ddddda;
+  --green: #e87524;
+  --green-soft: #fff5ed;
+  --violet: #e87524;
+  --orange: #e87524;
+  --shadow: 0 18px 50px rgba(38, 40, 42, 0.1);
 }
 
 * {
@@ -53,7 +53,7 @@ input {
   min-height: 112px;
   padding: 24px 0;
   color: #fff;
-  background: linear-gradient(108deg, #481759 0%, #762a83 100%);
+  background: linear-gradient(108deg, #393b3d 0%, #55585a 100%);
 }
 
 .topbar-inner {
@@ -68,44 +68,12 @@ input {
 .brand {
   grid-column: 1;
   justify-self: center;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.brand-mark {
-  width: 82px;
-  height: 82px;
-  background: transparent;
-  display: grid;
-  place-items: center;
-  flex: 0 0 auto;
-}
-
-.brand-mark img {
-  width: 74px;
-  height: 74px;
-  object-fit: contain;
-  filter:
-    brightness(0) invert(1)
-    drop-shadow(0.6px 0 0 #fff)
-    drop-shadow(-0.6px 0 0 #fff)
-    drop-shadow(0 0.6px 0 #fff)
-    drop-shadow(0 -0.6px 0 #fff);
-}
-
-.brand strong {
-  display: block;
-  font-size: clamp(2rem, 3.4vw, 2.7rem);
+  color: #fff;
+  font-family: "Avenir Next", Montserrat, Futura, "Century Gothic", sans-serif;
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  font-weight: 800;
   line-height: 1;
-  letter-spacing: 0.01em;
-}
-
-.brand small {
-  display: block;
-  margin-top: 8px;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 0.96rem;
+  letter-spacing: 0.18em;
 }
 
 .workspace {
@@ -124,7 +92,7 @@ input {
 
 .search-panel,
 .map-panel {
-  border: 1px solid rgba(76, 29, 95, 0.09);
+  border: 1px solid rgba(47, 49, 51, 0.1);
   border-radius: 28px;
   background: var(--white);
   box-shadow: var(--shadow);
@@ -158,7 +126,7 @@ input {
 
 h1 {
   margin: 0;
-  color: #4b3850;
+  color: #333638;
   font-size: clamp(1.35rem, 2vw, 1.58rem);
   font-weight: 750;
   line-height: 1.24;
@@ -168,7 +136,7 @@ h1 {
 .intro-copy {
   max-width: 40ch;
   margin: 10px 0 24px;
-  color: #76677a;
+  color: #747779;
   line-height: 1.55;
 }
 
@@ -181,11 +149,11 @@ h1 {
   width: 100%;
   min-height: 62px;
   padding: 0 48px 0 54px;
-  border: 2px solid #cdbbd2;
+  border: 2px solid #c8c9c7;
   border-radius: 16px;
   outline: none;
   color: var(--ink);
-  background: #fdfbfe;
+  background: #fdfdfc;
   font-size: 1rem;
   transition: border-color 160ms ease, box-shadow 160ms ease;
 }
@@ -196,7 +164,7 @@ h1 {
 
 #address-input:focus {
   border-color: var(--teal-bright);
-  box-shadow: 0 0 0 4px rgba(118, 42, 131, 0.14);
+  box-shadow: 0 0 0 4px rgba(232, 117, 36, 0.16);
 }
 
 .search-icon {
@@ -205,7 +173,7 @@ h1 {
   left: 19px;
   width: 22px;
   height: 22px;
-  border: 2px solid #76557f;
+  border: 2px solid #d66b22;
   border-radius: 50%;
   pointer-events: none;
 }
@@ -218,7 +186,7 @@ h1 {
   right: -7px;
   bottom: -4px;
   border-radius: 99px;
-  background: #76557f;
+  background: #d66b22;
   transform: rotate(45deg);
 }
 
@@ -256,7 +224,7 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 16px;
   background: #fff;
-  box-shadow: 0 16px 38px rgba(76, 29, 95, 0.18);
+  box-shadow: 0 16px 38px rgba(38, 40, 42, 0.16);
 }
 
 .suggestions.visible {
@@ -280,7 +248,7 @@ h1 {
 
 .suggestion:hover,
 .suggestion.active {
-  background: #f5eff7;
+  background: #fff3ea;
 }
 
 .suggestion strong {
@@ -300,26 +268,6 @@ h1 {
   font-size: 0.77rem;
 }
 
-.manual-button {
-  align-self: flex-start;
-  margin: 14px 0 0;
-  padding: 5px 0;
-  border: 0;
-  color: #714d79;
-  background: transparent;
-  font-size: 0.82rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.manual-button:hover,
-.manual-button:focus-visible,
-.manual-button.active {
-  color: #4c1d5f;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
 .result {
   margin-top: 28px;
   border-radius: 19px;
@@ -328,11 +276,11 @@ h1 {
 .result-empty {
   min-height: 188px;
   padding: 28px 20px;
-  border: 1px dashed #d7c7db;
+  border: 1px dashed #cfd0cd;
   display: grid;
   place-items: center;
   align-content: center;
-  color: #807184;
+  color: #737678;
   text-align: center;
 }
 
@@ -341,7 +289,8 @@ h1 {
   height: 42px;
   margin-bottom: 10px;
   border-radius: 50%;
-  background: #f4edf6;
+  color: #fff;
+  background: #7a7d7f;
   display: grid;
   place-items: center;
 }
@@ -360,7 +309,7 @@ h1 {
 }
 
 .result-empty h2 {
-  color: #57375f;
+  color: #3c3f41;
   font-size: 1rem;
 }
 
@@ -377,13 +326,13 @@ h1 {
 }
 
 .result-found {
-  border-color: #aed39f;
+  border-color: #f0b68c;
   background: var(--green-soft);
 }
 
 .result-outside {
-  border-color: #e3c493;
-  background: #fff7e9;
+  border-color: #cfd0cd;
+  background: #f4f4f2;
 }
 
 .result-error {
@@ -411,7 +360,7 @@ h1 {
 }
 
 .result-outside .result-symbol {
-  background: #c98935;
+  background: #777a7c;
 }
 
 .result-error .result-symbol {
@@ -420,7 +369,7 @@ h1 {
 
 .result-label {
   margin: 1px 0 3px;
-  color: #4d8055;
+  color: #b95514;
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.14em;
@@ -428,7 +377,7 @@ h1 {
 }
 
 .result-outside .result-label {
-  color: #95651f;
+  color: #666a6c;
 }
 
 .result-error .result-label {
@@ -445,7 +394,7 @@ h1 {
   margin: 15px 0 0;
   padding: 10px 12px;
   border-radius: 10px;
-  color: #46665f;
+  color: #55595b;
   background: rgba(255, 255, 255, 0.56);
   font-size: 0.83rem;
   line-height: 1.4;
@@ -465,7 +414,7 @@ h1 {
 
 .field-label {
   margin: 0 0 6px;
-  color: #71826e;
+  color: #a6531b;
   font-size: 0.69rem;
   font-weight: 800;
   letter-spacing: 0.14em;
@@ -499,7 +448,7 @@ h1 {
 
 .outside-copy {
   margin: 14px 0 0;
-  color: #765b32;
+  color: #666a6c;
   font-size: 0.9rem;
   line-height: 1.5;
 }
@@ -522,7 +471,7 @@ h1 {
 #map {
   width: 100%;
   height: 100%;
-  background: #e8e0ea;
+  background: #e1e2df;
 }
 
 .leaflet-container {
@@ -541,8 +490,8 @@ h1 {
 
 .leaflet-control-scale-line {
   padding: 2px 7px 1px;
-  border-color: #6f5876;
-  color: #5a4161;
+  border-color: #6d7072;
+  color: #505355;
   background: rgba(255, 255, 255, 0.88);
   text-shadow: none;
   font-size: 0.68rem;
@@ -552,7 +501,7 @@ h1 {
   overflow: hidden;
   border: 0 !important;
   border-radius: 12px !important;
-  box-shadow: 0 8px 24px rgba(76, 29, 95, 0.16) !important;
+  box-shadow: 0 8px 24px rgba(38, 40, 42, 0.16) !important;
 }
 
 .leaflet-control-zoom a {
@@ -562,7 +511,7 @@ h1 {
 
 .leaflet-popup-content-wrapper {
   border-radius: 14px;
-  box-shadow: 0 16px 36px rgba(76, 29, 95, 0.18);
+  box-shadow: 0 16px 36px rgba(38, 40, 42, 0.18);
 }
 
 .leaflet-popup-content {
@@ -586,7 +535,7 @@ h1 {
 }
 
 .popup-commune {
-  color: #77657c;
+  color: #6c7072;
   font-size: 0.82rem;
 }
 
@@ -615,11 +564,11 @@ h1 {
 .map-legend {
   position: absolute;
   z-index: 700;
-  border: 1px solid rgba(76, 29, 95, 0.1);
+  border: 1px solid rgba(47, 49, 51, 0.1);
   border-radius: 999px;
-  color: #6f5876;
+  color: #5d6163;
   background: rgba(255, 255, 255, 0.93);
-  box-shadow: 0 8px 22px rgba(76, 29, 95, 0.11);
+  box-shadow: 0 8px 22px rgba(38, 40, 42, 0.11);
   backdrop-filter: blur(8px);
   font-size: 0.72rem;
 }
@@ -653,22 +602,18 @@ h1 {
 }
 
 .legend-zone {
-  background: rgba(118, 42, 131, 0.48);
-}
-
-.manual-mode #map {
-  cursor: crosshair;
+  background: rgba(232, 117, 36, 0.5);
 }
 
 .map-sources {
   margin: 0 4px;
-  color: #8b7d90;
+  color: #777b7d;
   font-size: 0.72rem;
   line-height: 1.45;
 }
 
 .map-sources strong {
-  color: #79687e;
+  color: #55595b;
 }
 
 .map-sources a {
@@ -695,20 +640,6 @@ footer {
   .topbar-inner {
     width: min(100% - 28px, 760px);
     grid-template-columns: 1fr;
-  }
-
-  .brand-mark {
-    width: 70px;
-    height: 70px;
-  }
-
-  .brand-mark img {
-    width: 64px;
-    height: 64px;
-  }
-
-  .brand small {
-    display: none;
   }
 
   .workspace {
@@ -743,22 +674,10 @@ footer {
   }
 
   .brand {
-    gap: 12px;
+    font-size: 2rem;
+    letter-spacing: 0.15em;
   }
 
-  .brand-mark {
-    width: 62px;
-    height: 62px;
-  }
-
-  .brand-mark img {
-    width: 56px;
-    height: 56px;
-  }
-
-  .brand strong {
-    font-size: 1.9rem;
-  }
 
   .workspace {
     width: calc(100% - 18px);

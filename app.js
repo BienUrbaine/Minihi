@@ -8,16 +8,15 @@ const suggestionsBox = document.querySelector("#suggestions");
 const spinner = document.querySelector("#search-spinner");
 const resultBox = document.querySelector("#result");
 const mapStatus = document.querySelector("#map-status");
-const manualButton = document.querySelector("#manual-button");
 
 const perimeterStyle = {
   stroke: false,
-  fillColor: "#762a83",
-  fillOpacity: 0.48,
+  fillColor: "#e87524",
+  fillOpacity: 0.44,
 };
 
 const perimeterHoverStyle = {
-  fillOpacity: 0.65,
+  fillOpacity: 0.66,
 };
 
 function setMapStatus(message = "") {
@@ -65,7 +64,6 @@ let requestController = null;
 let debounceTimer = null;
 let suggestionResults = [];
 let activeSuggestionIndex = -1;
-let manualMode = false;
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -146,16 +144,6 @@ loadPerimeters()
           },
           mouseout() {
             layer.setStyle(perimeterStyle);
-          },
-          click(event) {
-            if (!manualMode) return;
-            layer.closePopup();
-            locatePoint(
-              event.latlng.lng,
-              event.latlng.lat,
-              "Point choisi sur la carte",
-            );
-            leaveManualMode();
           },
         });
       },
@@ -444,29 +432,4 @@ suggestionsBox.addEventListener("click", (event) => {
 
 document.addEventListener("click", (event) => {
   if (!event.target.closest(".search-shell")) closeSuggestions();
-});
-
-manualButton.addEventListener("click", () => {
-  manualMode = !manualMode;
-  document.body.classList.toggle("manual-mode", manualMode);
-  manualButton.classList.toggle("active", manualMode);
-  manualButton.setAttribute("aria-pressed", String(manualMode));
-  setMapStatus(
-    manualMode ? "Cliquez sur la carte pour tester un point" : "",
-  );
-});
-
-function leaveManualMode() {
-  manualMode = false;
-  document.body.classList.remove("manual-mode");
-  manualButton.classList.remove("active");
-  manualButton.setAttribute("aria-pressed", "false");
-  setMapStatus();
-}
-
-map.on("click", (event) => {
-  if (!manualMode) return;
-  const { lng, lat } = event.latlng;
-  locatePoint(lng, lat, "Point choisi sur la carte");
-  leaveManualMode();
 });

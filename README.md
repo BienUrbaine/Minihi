@@ -1,22 +1,21 @@
-# Kokolanek
+# Minihi
 
 Carte web de consultation des périmètres d’aide au logement.
 
 ## Carte publique
 
-[Ouvrir la carte Kokolanek](https://thomaslmk.github.io/Kokolanek/)
+[Ouvrir la carte Minihi](https://bienurbaine.github.io/Minihi/)
 
 ## Fonctionnalités
 
 - recherche d’adresse via le service public IGN / Géoplateforme ;
-- affichage des 14 périmètres issus de `DB_PAL` ;
+- affichage des opérations programmées de l’Anah en cours, filtrées à l’échelle de la Bretagne et pour un opérateur ;
 - test spatial dans le navigateur ;
-- affichage du dispositif et de la commune ;
-- placement manuel d’un point sur la carte.
+- affichage du dispositif, de sa période et de son maître d’ouvrage.
 
 ## Données
 
-Le référentiel publié est généré à partir de `DB_PAL_Urbanis.gpkg`. Treize des quatorze zones disposent actuellement d’un libellé de dispositif ; la zone `fid 14` reste signalée comme non renseignée.
+La couche publiée est issue du jeu de données « Liste des opérations programmées de l’Anah en cours et terminées » diffusé sur data.gouv.fr. Elle ne contient que les opérations en cours retenues pour le prototype.
 
 ## Publication
 
