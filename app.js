@@ -10,13 +10,19 @@ const resultBox = document.querySelector("#result");
 const mapStatus = document.querySelector("#map-status");
 
 const perimeterStyle = {
-  stroke: false,
-  fillColor: "#e87524",
-  fillOpacity: 0.44,
+  stroke: true,
+  color: "#8f2f08",
+  weight: 1.4,
+  opacity: 0.9,
+  fillColor: "#c84a0a",
+  fillOpacity: 0.52,
 };
 
 const perimeterHoverStyle = {
-  fillOpacity: 0.66,
+  color: "#782300",
+  weight: 2,
+  fillColor: "#d95712",
+  fillOpacity: 0.72,
 };
 
 function setMapStatus(message = "") {
