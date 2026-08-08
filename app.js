@@ -16,6 +16,15 @@ const perimeterStyle = {
   fillOpacity: 0.34,
 };
 
+const perimeterHoverStyle = {
+  fillOpacity: 0.52,
+};
+
+function setMapStatus(message = "") {
+  mapStatus.textContent = message;
+  mapStatus.hidden = !message;
+}
+
 const map = L.map("map", {
   zoomControl: true,
   scrollWheelZoom: true,
@@ -33,6 +42,14 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map);
+
+L.control
+  .scale({
+    position: "bottomright",
+    imperial: false,
+    maxWidth: 110,
+  })
+  .addTo(map);
 
 const markerIcon = L.divIcon({
   className: "",
@@ -105,15 +122,24 @@ loadPerimeters()
           direction: "top",
           opacity: 0.95,
         });
-        layer.on("click", (event) => {
-          if (!manualMode) return;
-          layer.closePopup();
-          locatePoint(
-            event.latlng.lng,
-            event.latlng.lat,
-            "Point choisi sur la carte",
-          );
-          leaveManualMode();
+        layer.on({
+          mouseover() {
+            layer.setStyle(perimeterHoverStyle);
+            layer.bringToFront();
+          },
+          mouseout() {
+            layer.setStyle(perimeterStyle);
+          },
+          click(event) {
+            if (!manualMode) return;
+            layer.closePopup();
+            locatePoint(
+              event.latlng.lng,
+              event.latlng.lat,
+              "Point choisi sur la carte",
+            );
+            leaveManualMode();
+          },
         });
       },
     }).addTo(map);
@@ -124,10 +150,10 @@ loadPerimeters()
       map.invalidateSize({ pan: false });
       map.fitBounds(perimeterLayer.getBounds(), { padding: [28, 28] });
     }, 120);
-    mapStatus.textContent = `${features.length} périmètres chargés`;
+    setMapStatus();
   })
   .catch((error) => {
-    mapStatus.textContent = "Périmètres indisponibles";
+    setMapStatus("Périmètres indisponibles");
     showError(error.message);
   });
 
@@ -407,9 +433,9 @@ manualButton.addEventListener("click", () => {
   document.body.classList.toggle("manual-mode", manualMode);
   manualButton.classList.toggle("active", manualMode);
   manualButton.setAttribute("aria-pressed", String(manualMode));
-  mapStatus.textContent = manualMode
-    ? "Cliquez sur la carte pour tester un point"
-    : `${features.length} périmètres chargés`;
+  setMapStatus(
+    manualMode ? "Cliquez sur la carte pour tester un point" : "",
+  );
 });
 
 function leaveManualMode() {
@@ -417,7 +443,7 @@ function leaveManualMode() {
   document.body.classList.remove("manual-mode");
   manualButton.classList.remove("active");
   manualButton.setAttribute("aria-pressed", "false");
-  mapStatus.textContent = `${features.length} périmètres chargés`;
+  setMapStatus();
 }
 
 map.on("click", (event) => {
