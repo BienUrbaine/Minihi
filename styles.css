@@ -498,6 +498,24 @@ h1 {
   font-family: inherit;
 }
 
+.leaflet-tile-pane {
+  filter: saturate(0.58) brightness(1.07) contrast(0.9);
+}
+
+.leaflet-control-scale {
+  margin-right: 14px !important;
+  margin-bottom: 28px !important;
+}
+
+.leaflet-control-scale-line {
+  padding: 2px 7px 1px;
+  border-color: #536d67;
+  color: #405d57;
+  background: rgba(255, 255, 255, 0.88);
+  text-shadow: none;
+  font-size: 0.68rem;
+}
+
 .leaflet-control-zoom {
   overflow: hidden;
   border: 0 !important;
@@ -575,8 +593,9 @@ h1 {
 }
 
 .map-status {
+  top: 14px;
   right: 14px;
-  bottom: 14px;
+  bottom: auto;
   padding: 8px 12px;
 }
 
