@@ -14,18 +14,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Installer GDAL
+        run: sudo apt-get update && sudo apt-get install -y gdal-bin
       - name: Télécharger et filtrer les QPV Bretagne
         run: |
+          curl -L "https://www.data.gouv.fr/api/1/datasets/r/122b44dd-99f8-4d00-9e0e-d1048bedf464" -o /tmp/qpv.zip
+          mkdir -p /tmp/qpv
+          unzip -o /tmp/qpv.zip -d /tmp/qpv
+          SHP=$(find /tmp/qpv -type f -iname '*.shp' | head -n 1)
+          ogr2ogr -f GeoJSON data/QPV_2024_Bretagne_WGS84.geojson "$SHP" -where "insee_reg = '53'" -t_srs EPSG:4326 -lco RFC7946=YES
+      - name: Contrôler le résultat
+        run: |
           python - <<'PY'
-          import json, urllib.request
-          url = 'https://static.data.gouv.fr/resources/quartiers-prioritaires-de-la-politique-de-la-ville-qpv/20250206-161839/qp2024-france-hexagonale-outre-mer-wgs84-epsg4326.geojson'
-          with urllib.request.urlopen(url) as r:
-              data = json.load(r)
-          features = [f for f in data.get('features', []) if str(f.get('properties', {}).get('insee_reg', '')) == '53']
-          out = {'type': 'FeatureCollection', 'name': 'QPV_2024_Bretagne_WGS84', 'features': features}
-          with open('data/QPV_2024_Bretagne_WGS84.geojson', 'w', encoding='utf-8') as f:
-              json.dump(out, f, ensure_ascii=False, separators=(',', ':'))
-          print(f'{len(features)} QPV exportés')
+          import json
+          with open('data/QPV_2024_Bretagne_WGS84.geojson', encoding='utf-8') as f:
+              data = json.load(f)
+          assert len(data.get('features', [])) == 31, f"Nombre inattendu de QPV: {len(data.get('features', []))}"
+          print('31 QPV Bretagne exportés')
           PY
       - name: Commit du fichier
         run: |
