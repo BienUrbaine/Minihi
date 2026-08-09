@@ -1,0 +1,36 @@
+name: Import QPV Bretagne
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - data/.import-qpv-trigger
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Télécharger et filtrer les QPV Bretagne
+        run: |
+          python - <<'PY'
+          import json, urllib.request
+          url = 'https://static.data.gouv.fr/resources/quartiers-prioritaires-de-la-politique-de-la-ville-qpv/20250206-161839/qp2024-france-hexagonale-outre-mer-wgs84-epsg4326.geojson'
+          with urllib.request.urlopen(url) as r:
+              data = json.load(r)
+          features = [f for f in data.get('features', []) if str(f.get('properties', {}).get('insee_reg', '')) == '53']
+          out = {'type': 'FeatureCollection', 'name': 'QPV_2024_Bretagne_WGS84', 'features': features}
+          with open('data/QPV_2024_Bretagne_WGS84.geojson', 'w', encoding='utf-8') as f:
+              json.dump(out, f, ensure_ascii=False, separators=(',', ':'))
+          print(f'{len(features)} QPV exportés')
+          PY
+      - name: Commit du fichier
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/QPV_2024_Bretagne_WGS84.geojson
+          git commit -m "Ajouter les QPV 2024 Bretagne" || exit 0
+          git push
