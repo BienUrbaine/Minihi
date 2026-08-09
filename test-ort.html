@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Recherchez une adresse et identifiez les dispositifs d’aide applicables." />
+    <title>Minihi — Test ORT</title>
+    <link rel="stylesheet" href="./leaflet.css" />
+    <link rel="stylesheet" href="./styles.css?v=20260808-12" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand" aria-label="Minihi">MINIHI</div>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="search-panel" aria-labelledby="search-title">
+        <div class="panel-intro">
+          <h1 id="search-title">Vérifier l’éligibilité d’un logement</h1>
+          <p class="intro-copy">Consultez les périmètres d’aide pour savoir si un logement est éligible à un dispositif d’accompagnement à partir de son adresse.</p>
+        </div>
+
+        <div class="search-shell">
+          <label class="sr-only" for="address-input">Adresse à rechercher</label>
+          <span class="search-icon" aria-hidden="true"></span>
+          <input id="address-input" type="search" autocomplete="street-address" placeholder="Numéro, voie et commune" aria-controls="suggestions" aria-autocomplete="list" />
+          <span id="search-spinner" class="spinner" aria-hidden="true"></span>
+          <div id="suggestions" class="suggestions" role="listbox" aria-label="Adresses proposées"></div>
+        </div>
+
+        <div id="result" class="result result-empty" aria-live="polite">
+          <div class="empty-illustration" aria-hidden="true"><strong>?</strong></div>
+          <h2>Résultat de la recherche</h2>
+          <p>Sélectionnez une adresse pour afficher l’éligibilité du logement et le ou les dispositifs applicables.</p>
+        </div>
+      </section>
+
+      <div class="map-column">
+        <section class="map-panel" aria-label="Carte des périmètres d’aide">
+          <div id="map"></div>
+          <div id="map-status" class="map-status">Chargement des périmètres…</div>
+          <div class="map-legend"><span><i class="legend-zone"></i>Périmètres des dispositifs d’aide</span></div>
+        </section>
+        <p class="map-sources"><strong>Sources —</strong> Périmètres : opérations programmées de l’Anah en cours, publiées sur data.gouv.fr. Adresses : Base Adresse Nationale (BAN) de l’IGN. Les données sont filtrées à l’échelle de la Bretagne et pour un opérateur. Minihi est un prototype. Les adresses saisies ne sont pas conservées.</p>
+      </div>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+      // Environnement de test : on réutilise l’application de production
+      // mais on redirige uniquement la couche GeoJSON vers le fichier de test.
+      (() => {
+        const nativeFetch = window.fetch.bind(window);
+        window.fetch = (resource, init) => {
+          const url = typeof resource === "string" ? resource : resource?.url;
+          if (
+            url === "./data/perimetres.geojson" ||
+            (typeof url === "string" && url.endsWith("/data/perimetres.geojson"))
+          ) {
+            return nativeFetch("./data/perimetres_test.geojson", init);
+          }
+          return nativeFetch(resource, init);
+        };
+      })();
+    </script>
+    <script src="./app.js?v=20260808-11"></script>
+  </body>
+</html>
