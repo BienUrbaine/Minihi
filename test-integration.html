@@ -12,6 +12,7 @@
       --paper: #f5f4ef;
       --white: #ffffff;
       --accent: #b63f0a;
+      --soft: #ebe9e1;
     }
 
     * { box-sizing: border-box; }
@@ -52,10 +53,18 @@
       font-size: .94rem;
     }
 
+    .breadcrumb {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 22px 28px 0;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
     .hero {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 74px 28px 44px;
+      padding: 58px 28px 42px;
       display: grid;
       grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
       gap: 48px;
@@ -87,10 +96,40 @@
       line-height: 1.65;
     }
 
+    .intro-grid,
+    .resource-grid {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 28px 56px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .intro-card,
+    .resource-card {
+      padding: 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .intro-card h3,
+    .resource-card h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    .intro-card p,
+    .resource-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: .92rem;
+    }
+
     .section {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 18px 28px 76px;
+      padding: 18px 28px 70px;
     }
 
     .section-heading {
@@ -130,9 +169,80 @@
 
     .after {
       max-width: 760px;
-      margin-top: 34px;
+      margin: 34px 0 0;
       color: var(--muted);
       line-height: 1.7;
+    }
+
+    .content-band {
+      background: var(--soft);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .content-band-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 56px 28px;
+      display: grid;
+      grid-template-columns: .72fr 1.28fr;
+      gap: 70px;
+    }
+
+    .content-band h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .body-copy {
+      columns: 2;
+      column-gap: 36px;
+      color: #565b59;
+      line-height: 1.72;
+      font-size: .94rem;
+    }
+
+    .body-copy p:first-child { margin-top: 0; }
+
+    .resources {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 62px 28px 12px;
+    }
+
+    .resources h2 {
+      margin: 0 0 8px;
+      font-size: 1.25rem;
+    }
+
+    .resources > p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 650px;
+      line-height: 1.6;
+    }
+
+    .resource-grid {
+      padding-top: 26px;
+    }
+
+    .resource-card {
+      min-height: 155px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .resource-meta {
+      display: block;
+      margin-bottom: 18px;
+      color: var(--accent);
+      font-size: .72rem;
+      font-weight: 750;
+      letter-spacing: .08em;
+      text-transform: uppercase;
     }
 
     .site-footer {
@@ -143,19 +253,28 @@
     .site-footer-inner {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 28px;
+      padding: 32px 28px;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
       color: var(--muted);
       font-size: .9rem;
     }
 
     @media (max-width: 800px) {
       nav { display: none; }
-      .hero {
+      .hero,
+      .content-band-inner {
         grid-template-columns: 1fr;
-        padding-top: 48px;
+        gap: 28px;
       }
+      .hero { padding-top: 42px; }
+      .intro-grid,
+      .resource-grid { grid-template-columns: 1fr; }
+      .body-copy { columns: 1; }
       iframe { height: 1040px; }
-      .section-heading {
+      .section-heading,
+      .site-footer-inner {
         align-items: start;
         flex-direction: column;
         gap: 6px;
@@ -171,26 +290,44 @@
         <span>Accueil</span>
         <span>Nos services</span>
         <span>Ressources</span>
+        <span>Actualités</span>
         <span>Contact</span>
       </nav>
     </div>
   </header>
 
   <main>
+    <div class="breadcrumb">Accueil &nbsp;·&nbsp; Habitat &nbsp;·&nbsp; Aides à la rénovation</div>
+
     <section class="hero">
       <div>
-        <p class="eyebrow">Outil cartographique</p>
+        <p class="eyebrow">Habitat &amp; rénovation</p>
         <h1>Identifier les aides applicables à une adresse</h1>
       </div>
       <p class="hero-copy">
-        Cette page sert uniquement à tester la manière dont Minihi peut être intégré dans un site web plus large, au milieu d’un contenu éditorial classique.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae justo at mauris pretium aliquet. Sed euismod, nibh quis volutpat convallis, augue nisi faucibus lorem, vitae cursus urna erat at erat.
       </p>
+    </section>
+
+    <section class="intro-grid" aria-label="Informations pratiques">
+      <article class="intro-card">
+        <h3>Pour quels projets ?</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non justo vitae sapien interdum porta. Cras commodo sem vitae velit feugiat.</p>
+      </article>
+      <article class="intro-card">
+        <h3>À qui s’adresser ?</h3>
+        <p>Praesent ut ligula nec erat feugiat faucibus. Suspendisse potenti. Donec volutpat sapien nec sapien interdum, at feugiat erat luctus.</p>
+      </article>
+      <article class="intro-card">
+        <h3>Avant de commencer</h3>
+        <p>Vivamus euismod augue sed nibh consequat, sed malesuada arcu egestas. Nulla facilisi. Duis posuere metus vel lorem vulputate.</p>
+      </article>
     </section>
 
     <section class="section">
       <div class="section-heading">
-        <h2>Consulter la carte</h2>
-        <p>Module Minihi intégré dans la page</p>
+        <h2>Consulter les périmètres d’aide</h2>
+        <p>Recherche à partir d’une adresse</p>
       </div>
 
       <div class="embed-shell">
@@ -202,13 +339,53 @@
       </div>
 
       <p class="after">
-        Le contenu du site continue normalement sous la carte. Cette mise en page permet de tester concrètement l’encombrement du module, sa hauteur, sa lisibilité et son comportement responsive sans modifier l’application Minihi elle-même.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a eros vel risus vulputate fermentum. Les informations affichées sont données à titre indicatif et doivent être confirmées auprès du service ou de l’opérateur compétent avant le dépôt d’un dossier.
       </p>
+    </section>
+
+    <section class="content-band">
+      <div class="content-band-inner">
+        <div>
+          <p class="eyebrow">Comprendre les dispositifs</p>
+          <h2>Rénover un logement dans un périmètre accompagné</h2>
+        </div>
+        <div class="body-copy">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur efficitur augue at risus pellentesque, vitae scelerisque neque posuere. Nam eu orci vel erat hendrerit tempor. Donec pretium ipsum sit amet lectus pharetra, quis porttitor arcu interdum.</p>
+          <p>Aliquam erat volutpat. Phasellus eget ullamcorper lorem. Integer non malesuada sem. Sed commodo, mauris et placerat tristique, justo ipsum consequat tellus, sed tincidunt justo lacus sed sapien.</p>
+          <p>Fusce quis libero sed arcu consequat dictum. Aenean consectetur lectus in magna viverra, vitae varius magna pretium. Proin dictum libero vitae nunc pulvinar, non elementum mauris aliquet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="resources">
+      <h2>Ressources complémentaires</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Retrouvez les principales informations utiles pour préparer un projet et approfondir les dispositifs mobilisables.</p>
+    </section>
+
+    <section class="resource-grid">
+      <article class="resource-card">
+        <span class="resource-meta">Guide pratique</span>
+        <h3>Préparer son projet de rénovation</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi consequat feugiat lacus.</p>
+      </article>
+      <article class="resource-card">
+        <span class="resource-meta">Aides &amp; financement</span>
+        <h3>Comprendre les dispositifs mobilisables</h3>
+        <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
+      </article>
+      <article class="resource-card">
+        <span class="resource-meta">Conseil</span>
+        <h3>Être accompagné dans ses démarches</h3>
+        <p>Nam blandit lectus et enim malesuada, nec consequat odio faucibus. Integer vitae mauris sed lorem.</p>
+      </article>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="site-footer-inner">Prototype d’intégration — GitHub Pages</div>
+    <div class="site-footer-inner">
+      <span>Prototype d’intégration — GitHub Pages</span>
+      <span>Mentions légales &nbsp;·&nbsp; Accessibilité &nbsp;·&nbsp; Données personnelles</span>
+    </div>
   </footer>
 </body>
 </html>
